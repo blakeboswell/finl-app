@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<meta charset="utf-8">
+	<title>Fin App</title>
+
+ 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bokeh-0.10.0.min.css') }}"  />
+ 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+
+ 	<script type="text/javascript" src="{{ url_for('static', filename='js/bokeh-0.10.0.min.js') }}" />
+  
+ 	</script>
+ 	{% if plot_script %}
+ 		{{ plot_script }}
+ 	{% endif %}
+
+</head>
+
+<body>
+
+	<div class="row" style="margin-top:5%;">
+        <div class="input-group">
+
+        	<form method="POST" action="/" >
+	            <input name="symbol" type="text" placeholder="Input Stock Symbol..." class="form-control">
+            </form>
+
+        </div>
+	</div>
+
+	<div class="row" style="margin-top:5%;">
+		<div class="input-group">
+		  {% if plot_div %}
+		  	{{ plot_div }}
+		  {% endif %}
+		</div>
+	</div>
+
+<body>
+</html>
