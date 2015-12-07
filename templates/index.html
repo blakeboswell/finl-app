@@ -5,11 +5,16 @@
 	<meta charset="utf-8">
 	<title>Fin App</title>
 
- 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bokeh-0.10.0.min.css') }}"  />
- 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+	<!-- custom -->
+ 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 
+ 	<!-- bokeh -->
+ 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bokeh-0.10.0.min.css') }}"  />
  	<script type="text/javascript" src="{{ url_for('static', filename='js/bokeh-0.10.0.min.js') }}" />
   
+  	<!-- boostrap -->
+  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/boostrap-3.3.6.css') }}"  />
+
  	</script>
  	{% if plot_script %}
  		{{ plot_script }}
@@ -20,12 +25,10 @@
 <body>
 
 	<div class="row" style="margin-top:5%;">
-        <div class="input-group">
-
-        	<form method="POST" action="/" >
+   		<div class="input-group col-md-7">
+        	<form method="POST" action="/">
 	            <input name="symbol" type="text" placeholder="Input Stock Symbol..." class="form-control">
             </form>
-
         </div>
 	</div>
 
