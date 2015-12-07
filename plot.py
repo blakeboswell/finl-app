@@ -36,8 +36,8 @@ def get_data(symbl):
 	raw_json = session.get(api_url).json()
 	# raw_json['data']: [date, open, high, low, close, volume, ex-dividend, splitratio, adjopen, adjhigh, adjlow, adjclose, adjvolume]
 	df = pd.DataFrame({
-			'date' : np.array([x[0] for x in raw_json['data']], dtype=np.datetime64),
+			'date' : np.array([x[0] for x in raw_json['data']]),
 			'close' : np.array([x[4] for x in raw_json['data']]),
 		})
-	
-	return df
+	df['date'] = pd.to_datetime(df['date'])
+	return df.head(30)
