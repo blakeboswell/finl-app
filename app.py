@@ -8,29 +8,33 @@ tickers = pd.read_csv('https://s3.amazonaws.com/quandl-static-content/Ticker+CSV
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	
-	'''
-	POST: check that symbol is valid, create plot, reset search bar
-	GET: show search bar with input message
-	'''
+	"""
+	the main page of the app
 
+	POST:
+		validate input symbol and create heroku plot
+
+	GET:
+		load search bar
+
+	"""
 	if request.method == 'POST' and 'symbol' in request.form:
 		symbl = request.form['symbol'].upper()
 		if 'WIKI/'+ symbl in tickers['quandl code'].values:
 			try:
 				name = tickers.loc[tickers['quandl code'] == 'WIKI/' + symbl, 'name'].values[0]
 				script, div = create_plot(symbl, name)
-				return render_template('index.html', place_holder= "Input Stock Symbol...", 
+				return render_template('index.html', place_holder= 'Input Stock Symbol...', 
 							plot_script=script, plot_div=div)
 			except:
 				return render_template('index.html', 
-					place_holder="An error has occured.")	
+					place_holder='An error has occured.')
 		else:
 			return render_template('index.html', 
-				place_holder="Stock Symbol not recognized. Please try again...")
+				place_holder='Stock Symbol not recognized. Please try again...')
 	else:
-		return render_template('index.html', place_holder="Input Stock Symbol...")
+		return render_template('index.html', place_holder='Input Stock Symbol...')
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
