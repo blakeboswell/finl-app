@@ -28,10 +28,10 @@ def index():
 							plot_script=script, plot_div=div)
 			except:
 				return render_template('index.html', 
-					place_holder='An error has occured.')
+							place_holder='An error has occured.')
 		else:
 			return render_template('index.html', 
-				place_holder='Stock Symbol not recognized. Please try again...')
+						place_holder='Stock Symbol not recognized. Please try again...')
 	else:
 		return render_template('index.html', place_holder='Input Stock Symbol...')
 
