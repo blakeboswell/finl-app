@@ -31,21 +31,20 @@ def create_plot(symbl, name):
 	plot.legend.background_fill_alpha = 0.0
 	plot.yaxis[0].formatter = NumeralTickFormatter(format='$0.00')
 	script, div = components(plot, CDN)
-
 	return Markup(script), Markup(div)
 
 
 def get_data(symbl):
-  	"""
-    method for requesting data from quandl api
-        
-    Args:
-        symbl: valid stock ticker symbol
-            
-    Returns:
-        {date, closing price}
-               
-    """
+	"""
+	method for requesting data from quandl api
+    
+	Args:
+		symbl: valid stock ticker symbol
+
+	Returns:
+		{date, closing price}
+       
+	"""
 	end_date = datetime.datetime.now()
 	start_date = end_date + datetime.timedelta(-30)
 	api_url = 'https://www.quandl.com/api/v3/datasets/WIKI/%s.json?api_key=t-drH_WSpLdRenh1o86E&start_date=%s&end_date=%s' \
